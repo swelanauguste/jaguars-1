@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+
+{% block head_title %}
+{{object.innings}} -
+{% endblock head_title %}
+
+{% block content %}
+<div class="container py-5">
+    <p class="text-end">{{object.match_date|date:"D d M Y"}}</p>
+    <h1 class="display-6">{{object.innings}}</h1>
+    <hr>
+    <p>{{object.player}} {{object.how_out}} {{object.runs}}({{object.balls_faced}}) {{object.fours}}/{{object.sixes}}</p>
+    <p></p>
+ 
+
+</div>
+
+{% endblock content %}

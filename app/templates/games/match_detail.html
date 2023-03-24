@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block head_title %}
+{{object}} -
+{% endblock head_title %}
+
+{% block content %}
+
+
+<div class="col-lg-6 mx-auto py-5">
+    <h3 class="text-center">{{object}}</h3><br><br>
+    {% for inning in object.innings.all %}
+    <div class="border border-dark rounded-0 mb-5">
+        <div class="bg-dark rounded-0">
+            <h5 class="text-white px-5 py-3">{{inning.batting_team}}</h5>
+        </div>
+        <div class="px-lg-5 px-3 table-responsive-lg text-nowrap">
+            <table
+                class="table table-hover table-sm table-hover table-borderless caption-top small">
+                <caption>Batting Summary</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Batter</th>
+                        <th scope="col"></th>
+                        <th class="text-center"
+                            scope="col">R</th>
+                        <th scope="col">B</th>
+                        <th scope="col">4s</th>
+                        <th scope="col">6s</th>
+                        <th scope="col">SR</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for batting in inning.batting_performances.all %}
+                    <tr>
+                        <th scope="row">{{forloop.counter}}</th>
+                        <td>{{batting.player}}</td>
+                        <td>{{batting.how_out}}</td>
+                        <td class="text-center">{{batting.runs}}</td>
+                        <td>{{batting.balls_faced}}</td>
+                        <td>{{batting.fours}}</td>
+                        <td>{{batting.sixes}}</td>
+                        <td>{{batting.get_strike_rate}}</td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td></td>
+                        <td>Extras</td>
+                        <td>(b {{inning.byes}}, lb {{inning.leg_byes}}, nb
+                            {{inning.no_balls|default:"0"}}, w
+                            {{inning.get_wides}})</td>
+                        <td class="text-center">{{inning.get_total_extras}}
+                        </td>
+                    </tr>
+                    <tr>
+                    <td></td>
+                    <td>Total</td>
+                    <td></td>
+                    <td class="text-center border-3 border-dark border-top">
+                        {{inning.get_total_score}}/{{inning.get_wickets}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="bg-dark rounded-0">
+            <h5 class="text-white px-5 py-3">{{inning.bowling_team}}</h5>
+        </div>
+        <div class="px-lg-5 px-3 table-responsive text-nowrap">
+            <table
+                class="table table-hover table-sm table-hover table-borderless caption-top small">
+                <caption>Bowling Summary</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th class="text-start"
+                            scope="col">Bowler</th>
+                        <th scope="col">O</th>
+                        <th scope="col">R</th>
+                        <th scope="col">W</th>
+                        <th scope="col">Econ</th>
+                        <th scope="col">WD</th>
+                        <th scope="col">NB</th>
+                        <th scope="col">0s</th>
+                        <th scope="col">4s</th>
+                        <th scope="col">6s</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for bowling in inning.bowling_performances.all %}
+                    <tr>
+                        <th scope="row">{{forloop.counter}}</th>
+                        <td class="text-start">{{bowling.player}}</td>
+                        <td>{{bowling.overs}}</td>
+                        <td>{{bowling.runs_conceded}}</td>
+                        <td>{{bowling.wickets}}</td>
+                        <td>{{bowling.get_bowling_econ}}</td>
+                        <td>{{bowling.wides}}</td>
+                        <td>{{bowling.no_balls}}</td>
+                        <td>{{bowling.dots}}</td>
+                        <td>{{bowling.fours}}</td>
+                        <td>{{bowling.sixes}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endfor %}
+
+{% endblock content %}
