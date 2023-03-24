@@ -67,6 +67,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "request.middleware.RequestMiddleware",
             ],
         },
     },
@@ -143,8 +144,12 @@ PWA_APP_SCOPE = "/"
 PWA_APP_ORIENTATION = "any"
 PWA_APP_START_URL = "/"
 PWA_APP_STATUS_BAR_COLOR = "default"
-PWA_APP_ICONS = [{"src": "/static/images/android-chrome-192x192.png", "sizes": "192x192"}]
-PWA_APP_ICONS_APPLE = [{"src": "/static/images/apple-touch-icon.png", "sizes": "192x192"}]
+PWA_APP_ICONS = [
+    {"src": "/static/images/android-chrome-192x192.png", "sizes": "192x192"}
+]
+PWA_APP_ICONS_APPLE = [
+    {"src": "/static/images/apple-touch-icon.png", "sizes": "192x192"}
+]
 PWA_APP_SPLASH_SCREEN = [
     {
         "src": "/static/images/icons/splash-640x1136.png",
@@ -155,17 +160,17 @@ PWA_APP_DIR = "ltr"
 PWA_APP_LANG = "en-US"
 
 REQUEST_IGNORE_PATHS = (
-    r'^admin/',
-    r'^static/',
+    r"^admin/",
+    r"^static/",
 )
 
 REQUEST_PLUGINS = (
-    'request.plugins.TrafficInformation',
-    'request.plugins.LatestRequests',
-    'request.plugins.TopPaths',
-    'request.plugins.TopErrorPaths',
-    'request.plugins.TopReferrers',
-    'request.plugins.TopSearchPhrases',
-    'request.plugins.TopBrowsers',
-    'request.plugins.ActiveUsers'
+    "request.plugins.TrafficInformation",
+    "request.plugins.LatestRequests",
+    "request.plugins.TopPaths",
+    "request.plugins.TopErrorPaths",
+    "request.plugins.TopReferrers",
+    "request.plugins.TopSearchPhrases",
+    "request.plugins.TopBrowsers",
+    "request.plugins.ActiveUsers",
 )
