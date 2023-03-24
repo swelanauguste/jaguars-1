@@ -151,3 +151,19 @@ PWA_APP_SPLASH_SCREEN = [
 ]
 PWA_APP_DIR = "ltr"
 PWA_APP_LANG = "en-US"
+
+REQUEST_IGNORE_PATHS = (
+    r'^admin/',
+    r'^static/',
+)
+
+REQUEST_PLUGINS = (
+    'request.plugins.TrafficInformation',
+    'request.plugins.LatestRequests',
+    'request.plugins.TopPaths',
+    'request.plugins.TopErrorPaths',
+    'request.plugins.TopReferrers',
+    'request.plugins.TopSearchPhrases',
+    'request.plugins.TopBrowsers',
+    'request.plugins.ActiveUsers'
+)
