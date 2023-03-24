@@ -69,7 +69,7 @@ class Match(TimeStamp):
 
     class Meta:
         verbose_name_plural = "matches"
-        ordering = ("-created",)
+        ordering = ("-match_date",)
 
     def __str__(self):
         return f"{self.team1.name} vs {self.team2.name} on {self.match_date}"
