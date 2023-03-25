@@ -44,6 +44,13 @@ class Dismissal(TimeStamp):
         return self.name.lower()
 
 
+class MatchTime(models.Model):
+    time = models.TimeField()
+
+    def __str__(self):
+        return f"{self.time}"
+
+
 class Match(TimeStamp):
     team1 = models.ForeignKey(
         Team, related_name="team1_matches", on_delete=models.CASCADE
@@ -52,6 +59,9 @@ class Match(TimeStamp):
         Team, related_name="team2_matches", on_delete=models.CASCADE
     )
     match_date = models.DateField()
+    match_time = models.ForeignKey(
+        MatchTime, on_delete=models.CASCADE, null=True, blank=True
+    )
     winner = models.ForeignKey(
         Team,
         related_name="winning_matches",
@@ -72,7 +82,7 @@ class Match(TimeStamp):
         ordering = ("-match_date",)
 
     def __str__(self):
-        return f"{self.team1.name} vs {self.team2.name} on {self.match_date}"
+        return f"{self.team1.name} vs {self.team2.name} on {self.match_date} at {self.match_time}"
 
 
 class Player(TimeStamp):
