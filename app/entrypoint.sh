@@ -13,11 +13,11 @@
 # python manage.py flush --noinput
 python manage.py makemigrations
 python manage.py migrate
-python manage.py createsuperuser --username kingship --email kingship.lc@gmail.com --noinput
+# python manage.py createsuperuser --username kingship --email kingship.lc@gmail.com --noinput
 
-python manage.py add_venues
-python manage.py add_teams
-python manage.py add_dismissal_list
+# python manage.py add_venues
+# python manage.py add_teams
+# python manage.py add_dismissal_list
 
 python manage.py collectstatic --noinput
 
