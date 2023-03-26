@@ -162,6 +162,8 @@ PWA_APP_LANG = "en-US"
 REQUEST_IGNORE_PATHS = (
     r"^admin/",
     r"^static/",
+    r"^manifest.json.js/",
+    r"^serviceworker.js/",
 )
 
 REQUEST_PLUGINS = (
