@@ -18,8 +18,8 @@ python manage.py migrate
 # python manage.py add_venues
 # python manage.py add_teams
 # python manage.py add_dismissal_list
-python manage.py add_south_castries_players
-python manage.py add_jaguars_players
+# python manage.py add_south_castries_players
+# python manage.py add_jaguars_players
 
 python manage.py collectstatic --noinput
 
