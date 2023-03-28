@@ -8,7 +8,12 @@
 
 
 <div class="col-lg-6 mx-auto py-5">
-    <h3 class="text-center">{{object}}</h3><br><br>
+    <div class="mb-5 col mx-auto text-center shadow bg-dark text-white rounded-4 p-5">
+        <h3> {{object.team1}} and {{object.team2}} at {{object.venue}}</h3>
+        <h4>{{object.match_time.time|time:"g:s a"}} - {{object.match_date}}
+        </h4>
+        <h5></h5>
+    </div>
     {% for inning in object.innings.all %}
     <div class="border border-dark rounded-0 mb-5">
         <div class="bg-dark rounded-0">
@@ -54,11 +59,13 @@
                         </td>
                     </tr>
                     <tr>
-                    <td></td>
-                    <td>Total</td>
-                    <td></td>
-                    <td class="text-center border-3 border-dark border-top">
-                        {{inning.get_total_score}}/{{inning.get_wickets}}</td>
+                        <td></td>
+                        <td>Total</td>
+                        <td></td>
+                        <td
+                            class="text-center border-3 border-dark border-top">
+                            {{inning.get_total_score}}/{{inning.get_wickets}}
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -110,4 +117,4 @@
     <p class="text-center">No Details</p>
     {% endfor %}
 
-{% endblock content %}
+    {% endblock content %}

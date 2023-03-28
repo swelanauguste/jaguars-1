@@ -18,12 +18,13 @@ TEAM_LIST = [
     "DC United",
     "Raising Sun",
     "C Vests",
-    "M Blasters"
+    "M Blasters",
+    "South Castries"
 ]
 
 class Command(BaseCommand):
     def handle(self, *args, **kwargs):
-        Team.objects.all().delete()
+        # Team.objects.all().delete()
         for _ in TEAM_LIST:
             name = _
             Team.objects.get_or_create(

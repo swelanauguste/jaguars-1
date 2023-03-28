@@ -79,18 +79,18 @@ class Match(TimeStamp):
 
     class Meta:
         verbose_name_plural = "matches"
-        ordering = ("-match_date",)
+        ordering = ("match_date", 'match_time')
 
     def __str__(self):
-        return f"{self.team1.name} vs {self.team2.name} on {self.match_date} at {self.match_time}"
+        return f"{self.team1.name} vs {self.team2.name} - {self.match_date} - {self.match_time} - {self.venue}"
 
 
 class Player(TimeStamp):
     name = models.CharField(max_length=100)
-    team = models.ForeignKey(Team, related_name="players", on_delete=models.CASCADE)
+    teams = models.ManyToManyField(Team, related_name='players')
 
     class Meta:
-        ordering = ("name", "team")
+        ordering = ("name",)
 
     def __str__(self):
         return self.name

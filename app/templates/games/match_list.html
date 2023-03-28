@@ -24,8 +24,8 @@ Matches -
     <hr>
     <ol>
         {% for match in object_list %}
-        <li><a class="btn btn-sm btn-outline-dark rounded-pill mb-3"
-                href="{% url 'detail' match.pk %}">{{match.team1}} VS {{match.team2}} {{match.match_date}} at {{match.match_time.time|time:"g:s a"|default:"00:00:00"}}</a></li>
+        <li><a class="text-dark small"
+                href="{% url 'detail' match.pk %}">{{match.team1}} VS {{match.team2}} {{match.match_date}} at {{match.match_time.time|time:"g:s a"|default:"00:00:00"}} - {{match.venue}}</a></li>
         {% endfor %}
     </ol>
 </div>

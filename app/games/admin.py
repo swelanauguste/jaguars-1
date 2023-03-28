@@ -6,10 +6,10 @@ from .models import (
     Dismissal,
     Innings,
     Match,
+    MatchTime,
     Player,
     Team,
     Venue,
-    MatchTime
 )
 
 admin.site.register(Team)
@@ -19,7 +19,7 @@ admin.site.register(MatchTime)
 
 
 class PlayerAdmin(admin.ModelAdmin):
-    list_display = ("name", "team")
+    list_display = ("name",)
 
 
 admin.site.register(Player, PlayerAdmin)

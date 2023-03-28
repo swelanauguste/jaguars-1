@@ -134,8 +134,8 @@ MEDIA_ROOT = BASE_DIR / "mediafiles"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-PWA_APP_NAME = "kingship cricket alpha0.1"
-PWA_APP_DESCRIPTION = "Cricket match results"
+PWA_APP_NAME = "kingship match-summary"
+PWA_APP_DESCRIPTION = "Cricket match summary alpha0.1 version"
 PWA_APP_DEBUG_MODE = False
 PWA_APP_THEME_COLOR = "#A5E7DC"
 PWA_APP_BACKGROUND_COLOR = "#A5E7DC"
