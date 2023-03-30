@@ -164,8 +164,10 @@ class BattingPerformance(TimeStamp):
 
     @property
     def get_strike_rate(self):
-        strike_rate = self.runs / self.balls_faced * 100
-        return f"{strike_rate:.2f}"
+        if self.runs != 0 or self.balls_faced != 0:
+            strike_rate = self.runs / self.balls_faced * 100
+            return f"{strike_rate:.2f}"
+        return 0
 
     def __str__(self):
         return f"{self.player} scored {self.runs} runs in {self.innings}"
@@ -193,8 +195,10 @@ class BowlingPerformance(TimeStamp):
 
     @property
     def get_bowling_econ(self):
-        econ = self.runs_conceded / self.overs
-        return f"{econ:.2f}"
+        if self.runs_conceded != 0 or self.overs != 0:
+            econ = self.runs_conceded / self.overs
+            return f"{econ:.2f}"
+        return 0
 
     def __str__(self):
         return f"{self.player} took {self.wickets} wickets in {self.innings}"
