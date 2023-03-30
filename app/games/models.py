@@ -120,7 +120,7 @@ class Innings(TimeStamp):
 
     @property
     def get_no_balls(self):
-        return sum(no_balls.no_balls for no_balls in self.bowling_performances.all())
+        return sum(no_ball.no_balls for no_ball in self.bowling_performances.all())
 
     @property
     def get_total_extras(self):
@@ -164,7 +164,7 @@ class BattingPerformance(TimeStamp):
 
     @property
     def get_strike_rate(self):
-        if self.runs != 0 or self.balls_faced != 0:
+        if self.runs >= 1 and self.balls_faced >= 1:
             strike_rate = self.runs / self.balls_faced * 100
             return f"{strike_rate:.2f}"
         return 0
@@ -195,7 +195,7 @@ class BowlingPerformance(TimeStamp):
 
     @property
     def get_bowling_econ(self):
-        if self.runs_conceded != 0 or self.overs != 0:
+        if self.runs_conceded >= 1 and self.overs >= 1:
             econ = self.runs_conceded / self.overs
             return f"{econ:.2f}"
         return 0
