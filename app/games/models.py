@@ -197,7 +197,7 @@ class BowlingPerformance(TimeStamp):
     def get_bowling_econ(self):
         if self.runs_conceded >= 1 and self.overs >= 1:
             econ = self.runs_conceded / self.overs
-            return f"{econ:.2f}"
+            return f"{econ:.1f}"
         return 0
 
     def __str__(self):
