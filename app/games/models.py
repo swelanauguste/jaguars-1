@@ -166,7 +166,7 @@ class BattingPerformance(TimeStamp):
     def get_strike_rate(self):
         if self.runs >= 1 and self.balls_faced >= 1:
             strike_rate = self.runs / self.balls_faced * 100
-            return f"{strike_rate:.2f}"
+            return f"{strike_rate:.1f}"
         return 0
 
     def __str__(self):
@@ -197,7 +197,7 @@ class BowlingPerformance(TimeStamp):
     def get_bowling_econ(self):
         if self.runs_conceded >= 1 and self.overs >= 1:
             econ = self.runs_conceded / self.overs
-            return f"{econ:.2f}"
+            return f"{econ:.1f}"
         return 0
 
     def __str__(self):

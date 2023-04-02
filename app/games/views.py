@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.db.models import Q
 from django.views.generic import CreateView, DetailView, ListView
 
 from .models import BattingPerformance, Innings, Match, Team, Venue
@@ -26,6 +26,17 @@ class MatchDetailView(DetailView):
 
 class MatchListView(ListView):
     model = Match
+
+    extra_context = {"teams": Team.objects.all()}
+
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+        if query:
+            return Match.objects.filter(
+                Q(team1__name__icontains=query) | Q(team2__name__icontains=query)
+            ).distinct()
+        else:
+            return Match.objects.all()
 
 
 # class BattingPerformanceCreateView(CreateView):
