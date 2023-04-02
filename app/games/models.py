@@ -166,7 +166,7 @@ class BattingPerformance(TimeStamp):
     def get_strike_rate(self):
         if self.runs >= 1 and self.balls_faced >= 1:
             strike_rate = self.runs / self.balls_faced * 100
-            return f"{strike_rate:.2f}"
+            return f"{strike_rate:.1f}"
         return 0
 
     def __str__(self):
