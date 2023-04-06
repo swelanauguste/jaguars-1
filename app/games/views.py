@@ -1,6 +1,6 @@
 from django.db.models import Q
 from django.views.generic import CreateView, DetailView, ListView
-
+from datetime import datetime
 from .models import BattingPerformance, Innings, Match, Team, Tournament, Venue
 
 
@@ -42,7 +42,7 @@ class MatchListView(ListView):
                 | Q(tournament__name__icontains=query)
             ).distinct()
         else:
-            return Match.objects.all()
+            return Match.objects.filter(match_date__gte=datetime.today())
 
 
 # class BattingPerformanceCreateView(CreateView):
