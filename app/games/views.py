@@ -1,7 +1,7 @@
 from django.db.models import Q
 from django.views.generic import CreateView, DetailView, ListView
 
-from .models import BattingPerformance, Innings, Match, Team, Venue
+from .models import BattingPerformance, Innings, Match, Team, Tournament, Venue
 
 
 class TealListView(ListView):
@@ -27,14 +27,19 @@ class MatchDetailView(DetailView):
 class MatchListView(ListView):
     model = Match
     teams = Team.objects.all()
+    tournaments = Tournament.objects.all()
 
-    extra_context = {"teams": teams}
+    extra_context = {"teams": teams, "tournaments": tournaments}
 
     def get_queryset(self):
-        query = self.request.GET.get("q")
-        if query:
+        query1 = self.request.GET.get("team")
+        query2 = self.request.GET.get("tournament")
+        if query1 or query2:
+            query = query1 + query2
             return Match.objects.filter(
-                Q(team1__name__icontains=query) | Q(team2__name__icontains=query)
+                Q(team1__name__icontains=query)
+                | Q(team2__name__icontains=query)
+                | Q(tournament__name__icontains=query)
             ).distinct()
         else:
             return Match.objects.all()

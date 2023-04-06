@@ -25,30 +25,41 @@ Matches -
     </div>
     <hr>
     <div class="row justify-content-center">
-        <div class="py-3 col-lg-3 text-end">
+        <div class="py-3 col-lg-4 text-end">
             <form action=""
                 method="get">
-                <select name="q"
-                    class="form-control rounded-pill"
-                    id="teams"
-                    onchange="this.form.submit()">
-                    <option value="">Teams</option>
-                    {% for team in teams %}
-                    <option value="{{team.name}}">{{team.name}}</option>
-                    {% endfor %}
-                </select>
+                <div class="d-flex">
+                    <select name="team"
+                        class="form-control rounded-pill me-3"
+                        id="teams"
+                        onchange="this.form.submit()">
+                        <option value="">Teams</option>
+                        {% for team in teams %}
+                        <option value="{{team.name}}">{{team.name}}</option>
+                        {% endfor %}
+                    </select>
+                    <select name="tournament"
+                        class="form-control rounded-pill"
+                        id="tournaments"
+                        onchange="this.form.submit()">
+                        <option value="">Tournament</option>
+                        {% for tournament in tournaments %}
+                        <option value="{{tournament.name}}">{{tournament.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
             </form>
         </div>
         <div class="py-3 col-lg-1 text-start ">
             <a class="btn btn-dark rounded-pill"
-                href="/">Clear</a>
+                href="/">All</a>
         </div>
     </div>
     <br>
     {% for match in object_list %}
     <a class="text-dark text-decoration-none"
         href="{% url 'detail' match.pk %}">
-        <div class="col-lg-4 mx-auto border border-dark p-3 rounded-4 mb-3">
+        <div class="col-lg-5 mx-auto p-3 rounded-4 mb-3 bg-white">
             <div class="text-center">
                 <span class="btn btn-outline-dark">{{match.team1}}</span> VS
                 <span class="btn btn-outline-dark">{{match.team2}}</span>

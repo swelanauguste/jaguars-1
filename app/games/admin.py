@@ -9,10 +9,12 @@ from .models import (
     MatchTime,
     Player,
     Team,
+    Tournament,
     Venue,
 )
 
 admin.site.register(Team)
+admin.site.register(Tournament)
 admin.site.register(Venue)
 admin.site.register(Dismissal)
 admin.site.register(MatchTime)

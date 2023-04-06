@@ -51,6 +51,17 @@ class MatchTime(models.Model):
         return f"{self.time}"
 
 
+class Tournament(models.Model):
+    name = models.CharField(max_length=200)
+    year = models.CharField(max_length=4)
+
+    class Meta:
+        unique_together = ["name", "year"]
+
+    def __str__(self):
+        return f"{self.name} {self.year}"
+
+
 class Match(TimeStamp):
     team1 = models.ForeignKey(
         Team, related_name="team1_matches", on_delete=models.CASCADE
@@ -69,6 +80,9 @@ class Match(TimeStamp):
         blank=True,
         on_delete=models.SET_NULL,
     )
+    tournament = models.ForeignKey(
+        Tournament, on_delete=models.CASCADE, null=True, blank=True
+    )
     venue = models.ForeignKey(
         Venue,
         related_name="venues",
@@ -79,7 +93,7 @@ class Match(TimeStamp):
 
     class Meta:
         verbose_name_plural = "matches"
-        ordering = ("match_date", 'match_time')
+        ordering = ("match_date", "match_time")
 
     def __str__(self):
         return f"{self.team1.name} vs {self.team2.name} - {self.match_date} - {self.match_time} - {self.venue}"
@@ -87,7 +101,7 @@ class Match(TimeStamp):
 
 class Player(TimeStamp):
     name = models.CharField(max_length=100)
-    teams = models.ManyToManyField(Team, related_name='players')
+    teams = models.ManyToManyField(Team, related_name="players")
 
     class Meta:
         ordering = ("name",)
