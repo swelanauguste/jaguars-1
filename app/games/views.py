@@ -26,8 +26,9 @@ class MatchDetailView(DetailView):
 
 class MatchListView(ListView):
     model = Match
+    teams = Team.objects.all()
 
-    extra_context = {"teams": Team.objects.all()}
+    extra_context = {"teams": teams}
 
     def get_queryset(self):
         query = self.request.GET.get("q")
