@@ -3,8 +3,10 @@ from datetime import datetime
 from django.db.models import Q
 from django.views.generic import CreateView, DetailView, ListView, UpdateView
 
-from .models import BattingPerformance, Innings, Match, Team, Tournament, Venue
+from .filters import MatchFilter
 from .forms import MatchCreateForm
+from .models import BattingPerformance, Innings, Match, Team, Tournament, Venue
+
 
 class TeamListView(ListView):
     model = Team
@@ -40,23 +42,17 @@ class MatchUpdateView(UpdateView):
 
 class MatchListView(ListView):
     model = Match
-    teams = Team.objects.all()
-    tournaments = Tournament.objects.all()
-
-    extra_context = {"teams": teams, "tournaments": tournaments}
+    queryset = Match.objects.all()
 
     def get_queryset(self):
-        query1 = self.request.GET.get("team")
-        query2 = self.request.GET.get("tournament")
-        if query1 or query2:
-            query = query1 + query2
-            return Match.objects.filter(
-                Q(team1__name__icontains=query)
-                | Q(team2__name__icontains=query)
-                | Q(tournament__name__icontains=query)
-            ).distinct()
-        else:
-            return Match.objects.filter(match_date__gte=datetime.today())
+        queryset = super().get_queryset()
+        self.filterset = MatchFilter(self.request.GET, queryset=queryset)
+        return self.filterset.qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["form"] = self.filterset.form
+        return context
 
 
 # class BattingPerformanceCreateView(CreateView):
