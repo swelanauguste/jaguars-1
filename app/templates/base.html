@@ -57,9 +57,11 @@
 </head>
 
 <body>
-    {% block content %}
+    <div class="min-vh-100">
+        {% block content %}
 
-    {% endblock content %}
+        {% endblock content %}
+    </div>
 
     {% include 'footer.html' %}
     <script
