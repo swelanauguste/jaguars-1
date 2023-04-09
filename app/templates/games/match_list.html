@@ -30,7 +30,7 @@ Matches -
             <div class="row justify-content-center bg-white rounded-4 p-3">
                 <div class="col py-3">
                     <select name="team"
-                        class="form-control rounded-pill me-3"
+                        class="form-control form-control-sm rounded-pill me-3"
                         id="teams"
                         onchange="this.form.submit()">
                         <option value="">Teams</option>
@@ -42,7 +42,7 @@ Matches -
                 </div>
                 <div class="col py-3">
                     <select name="tournament"
-                        class="form-control rounded-pill"
+                        class="form-control form-control-sm rounded-pill"
                         id="tournaments"
                         onchange="this.form.submit()">
                         <option value="">Tournament</option>
@@ -53,10 +53,8 @@ Matches -
                         {% endfor %}
                     </select>
                 </div>
-                <div class="py-3 col-lg-1 text-end">
-                    <a class="btn btn-dark rounded-pill"
-                        href="/">All</a>
-                </div>
+                <a class="small text-dark text-end px-4"
+                    href="/">reset</a>
             </div>
         </div>
     </form>
@@ -67,18 +65,16 @@ Matches -
         href="{% url 'detail' match.pk %}">
         <div class="col-lg-5 mx-auto py-3 px-0 rounded-4 mb-3 bg-white shadow">
             <div class="text-center">
-                <span class="text-muted small">{{match.match_date|date:"l dS F Y"}} | 
+    <span class="text-muted small">{{match.match_date|date:"l dS F Y"}} |
                     {{match.match_time.time|time:"g:s a"|default:"00:00:00"}}
                     | {{match.venue}}
                 </span>
             </div>
             <hr>
             <div class="text-center">
-                <span
-                    class="text-dark"><u>{{match.team1}}</u></span>
+                <span class="text-dark"><u>{{match.team1}}</u></span>
                 VS
-                <span
-                    class="text-dark"><u>{{match.team2}}</u></span>
+                <span class="text-dark"><u>{{match.team2}}</u></span>
             </div>
         </div>
     </a>
