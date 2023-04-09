@@ -33,7 +33,6 @@ Matches -
                         class="form-control form-control-sm rounded-pill me-3"
                         id="teams"
                         onchange="this.form.submit()">
-                        <option value="">Teams</option>
                         {% for team in teams %}
                         <option value="{{team.name}}">{{team.name}}
                         </option>
@@ -45,7 +44,6 @@ Matches -
                         class="form-control form-control-sm rounded-pill"
                         id="tournaments"
                         onchange="this.form.submit()">
-                        <option value="">Tournament</option>
                         {% for tournament in tournaments %}
                         <option value="{{tournament.name}}">
                             {{tournament.name}}
