@@ -1,6 +1,23 @@
-<div class="container">
-    <footer class="py-5">
-        <div class="d-flex pt-4 px-5 mt-4 bg-green fixed-bottom">
+<div class="fixed-bottom">
+    <div class="d-flex justify-content-center py-2">
+        {% include 'go_back.html' %}
+        <a title="matches"
+            class="text-dark text-decoration-none me-3"
+            href="/">
+            <span class="material-symbols-outlined fs-2">
+                sports_cricket
+            </span>
+        </a>
+        <a title="teams"
+            class="text-dark text-decoration-none me-3"
+            href="{% url 'teams' %}">
+            <span class="material-symbols-outlined fs-2">
+                group
+            </span>
+        </a>
+    </div>
+    <footer class="">
+        <div class="d-flex px-5 mt-4 bg-green justify-content-center">
             <p class="small">&copy; {% now "Y" %} <a
                     class="text-decoration-none text-dark"
                     target="_blank"

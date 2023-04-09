@@ -1,27 +1,41 @@
-from django.db.models import Q
-from django.views.generic import CreateView, DetailView, ListView
 from datetime import datetime
+
+from django.db.models import Q
+from django.views.generic import CreateView, DetailView, ListView, UpdateView
+
 from .models import BattingPerformance, Innings, Match, Team, Tournament, Venue
+from .forms import MatchCreateForm
 
-
-class TealListView(ListView):
+class TeamListView(ListView):
     model = Team
 
 
-class TealDetailView(DetailView):
+class TeamDetailView(DetailView):
     model = Team
 
 
-# class InningsDetailView(DetailView):
-#     model = Innings
+class TeamUpdateView(UpdateView):
+    model = Team
+    fields = "__all__"
 
 
-# class InningsListView(ListView):
-#     model = Innings
+class TeamCreateView(CreateView):
+    model = Team
+    fields = "__all__"
 
 
 class MatchDetailView(DetailView):
     model = Match
+
+
+class MatchCreateView(CreateView):
+    model = Match
+    form_class = MatchCreateForm
+
+
+class MatchUpdateView(UpdateView):
+    model = Match
+    fields = "__all__"
 
 
 class MatchListView(ListView):

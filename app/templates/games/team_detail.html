@@ -5,7 +5,6 @@
 {{object}} -
 {% endblock head_title %}
 
-
 {% block content %}
 <div class="container py-5">
     <div class="col-lg-6 mx-auto p-5 border border-dark rounded-4 mt-3">
@@ -14,7 +13,7 @@
         {% for player in object.players.all %}
         <p class="px-5">{{forloop.counter}}). {{player}}</p>
         {% empty %}
-        <p>No Players</p>
+        <p class="text-center">No Players</p>
         {% endfor %}
     </div>
 </div>

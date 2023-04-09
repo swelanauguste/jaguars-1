@@ -16,7 +16,7 @@ Matches -
         {% if request.user.is_superuser %}
         <div class="col pt-3 text-end px-5">
             <a class="text-decoration-none"
-                href="/admin/">
+                href="{% url 'match-create' %}">
                 <span class="material-symbols-outlined text-dark fs-1">
                     add_circle
                 </span></a>

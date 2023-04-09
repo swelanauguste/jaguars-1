@@ -63,16 +63,20 @@ class Tournament(models.Model):
 
 
 class Match(TimeStamp):
+    tournament = models.ForeignKey(
+        Tournament, on_delete=models.CASCADE, null=True, blank=True
+    )
+    match_date = models.DateField()
+    match_time = models.ForeignKey(
+        MatchTime, on_delete=models.CASCADE, null=True, blank=True
+    )
     team1 = models.ForeignKey(
         Team, related_name="team1_matches", on_delete=models.CASCADE
     )
     team2 = models.ForeignKey(
         Team, related_name="team2_matches", on_delete=models.CASCADE
     )
-    match_date = models.DateField()
-    match_time = models.ForeignKey(
-        MatchTime, on_delete=models.CASCADE, null=True, blank=True
-    )
+    
     winner = models.ForeignKey(
         Team,
         related_name="winning_matches",
@@ -80,9 +84,7 @@ class Match(TimeStamp):
         blank=True,
         on_delete=models.SET_NULL,
     )
-    tournament = models.ForeignKey(
-        Tournament, on_delete=models.CASCADE, null=True, blank=True
-    )
+   
     venue = models.ForeignKey(
         Venue,
         related_name="venues",

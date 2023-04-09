@@ -8,11 +8,19 @@
 
 
 <div class="col-lg-6 mx-auto py-5 container">
-    <div class="mb-5 col mx-auto text-center shadow bg-dark text-white rounded-4 p-5">
+    <div
+        class="mb-5 col mx-auto text-center shadow bg-dark text-white rounded-4 p-5">
         <h3> {{object.team1}} and {{object.team2}} at {{object.venue}}</h3>
-        <h4>{{object.match_time.time|time:"g:s a"}} - {{object.match_date}}
+        <h4>{{object.match_time.time|time:"g:s a"}} -
+            {{object.match_date|date:'l dS F Y'}}
         </h4>
-        <h5></h5>
+        <div class="text-end">
+            <a href="{% url 'match-update' object.pk %}">
+                <span class="material-symbols-outlined text-warning">
+                    edit
+                </span>
+            </a>
+        </div>
     </div>
     {% for inning in object.innings.all %}
     <div class="border border-dark rounded-0 mb-5">

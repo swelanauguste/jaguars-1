@@ -1,4 +1,14 @@
-<div class="d-flex flex-wrap py-3 px-lg-5 px-3 justify-content-center">
-    <a class="text-dark text-decoration-none me-3" href="/">Matches</a>
-    <a class="text-dark text-decoration-none me-3" href="{% url 'teams' %}">Teams</a>
+<div class="d-flex flex-wrap py-3 px-lg-5 px-3 justify-content-center sticky-bottom">
+    <a title="matches" class="text-dark text-decoration-none me-3"
+        href="/">
+        <span class="material-symbols-outlined">
+            sports_cricket
+        </span>
+    </a>
+    <a title="teams" class="text-dark text-decoration-none me-3"
+        href="{% url 'teams' %}">
+        <span class="material-symbols-outlined">
+            group
+        </span>
+    </a>
 </div>

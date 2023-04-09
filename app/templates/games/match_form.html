@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block head_title %}
+Add match -
+{% endblock head_title %}
+
+{% block content %}
+<div class="container">
+    <div class="border mx-auto rounded-4 col-lg-4 border-dark">
+        <h2 class="px-5 pt-3 text-center">Add match</h2>
+        <hr>
+        <form class="p-5" action="" method="post">
+            {% csrf_token %}
+            {{form|crispy}}
+            <div class="d-grid col mt-5">
+                <button class="btn btn-outline-dark" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+   
+</div>
+
+{% endblock content %}

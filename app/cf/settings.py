@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "crispy_forms",
-    # "crispy_bootstrap5",
+    "crispy_bootstrap5",
     "pwa",
     "request",
     "games",
@@ -175,3 +175,6 @@ REQUEST_PLUGINS = (
     "request.plugins.TopBrowsers",
     "request.plugins.ActiveUsers",
 )
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
