@@ -1,6 +1,6 @@
 import math
 from decimal import Decimal
-
+from django.urls import reverse
 from django.db import models
 
 CHOICES = [(i, i) for i in range(12)]
@@ -19,6 +19,10 @@ class Team(TimeStamp):
 
     class Meta:
         ordering = ("name",)
+        
+    def get_absolute_url(self):
+        return reverse("team-detail", kwargs={"pk": self.pk})
+    
 
     def __str__(self):
         return self.name
@@ -96,6 +100,9 @@ class Match(TimeStamp):
     class Meta:
         verbose_name_plural = "matches"
         ordering = ("match_date", "match_time")
+        
+    def get_absolute_url(self):
+        return reverse("match-detail", kwargs={"pk": self.pk})
 
     def __str__(self):
         return f"{self.team1.name} vs {self.team2.name} - {self.match_date} - {self.match_time} - {self.venue}"
