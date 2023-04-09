@@ -11,6 +11,8 @@
 #     echo "PostgreSQL started"
 # fi
 # python manage.py flush --noinput
+python manage.py migrate
+
 python manage.py makemigrations
 python manage.py migrate
 # python manage.py createsuperuser --username kingship --email kingship.lc@gmail.com --noinput
