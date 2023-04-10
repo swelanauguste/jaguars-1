@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from django.db.models import Q
 from django.views.generic import CreateView, DetailView, ListView, UpdateView
@@ -42,7 +42,9 @@ class MatchUpdateView(UpdateView):
 
 class MatchListView(ListView):
     model = Match
-    queryset = Match.objects.all()
+    today = datetime.now().date()
+    week_ago = today + timedelta(-7)
+    queryset = Match.objects.filter(match_date__gte=week_ago)
 
     def get_queryset(self):
         queryset = super().get_queryset()
