@@ -35,7 +35,7 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Batter</th>
-                        <th scope="col"></th>
+                        <th scope="col">How Out</th>
                         <th class="text-center"
                             scope="col">R</th>
                         <th scope="col">B</th>
@@ -93,12 +93,12 @@
                         <th scope="col">O</th>
                         <th scope="col">R</th>
                         <th scope="col">W</th>
-                        <th scope="col">Econ</th>
-                        <th scope="col">WD</th>
                         <th scope="col">NB</th>
+                        <th scope="col">WD</th>
                         <th scope="col">0s</th>
                         <th scope="col">4s</th>
                         <th scope="col">6s</th>
+                        <th scope="col">Econ</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -109,12 +109,12 @@
                         <td>{{bowling.overs}}</td>
                         <td>{{bowling.runs_conceded}}</td>
                         <td>{{bowling.wickets}}</td>
-                        <td>{{bowling.get_bowling_econ}}</td>
-                        <td>{{bowling.wides}}</td>
                         <td>{{bowling.no_balls}}</td>
+                        <td>{{bowling.wides}}</td>
                         <td>{{bowling.dots}}</td>
                         <td>{{bowling.fours}}</td>
                         <td>{{bowling.sixes}}</td>
+                        <td>{{bowling.get_bowling_econ}}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
