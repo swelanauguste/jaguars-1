@@ -22,7 +22,7 @@ urlpatterns = [
     path(
         "match/detail/<int:pk>/",
         MatchDetailView.as_view(),
-        name="detail",
+        name="match-detail",
     ),
     path("teams", TeamListView.as_view(), name="teams"),
     path("teams/add/", TeamCreateView.as_view(), name="team-create"),
