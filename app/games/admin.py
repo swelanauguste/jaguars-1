@@ -34,6 +34,36 @@ admin.site.register(Player, PlayerAdmin)
 # admin.site.register(Innings)
 
 
+@admin.register(BattingPerformance)
+class BattingPerformanceAdmin(admin.ModelAdmin):
+    list_display = (
+        "batted_at",
+        "player",
+        "how_out",
+        "runs",
+        "balls_faced",
+        "fours",
+        "sixes",
+        "out",
+        "get_strike_rate",
+    )
+
+
+@admin.register(BowlingPerformance)
+class BowlingPerformanceAdmin(admin.ModelAdmin):
+    list_display = (
+        "bowled_at",
+        "player",
+        "overs",
+        "runs_conceded",
+        "wickets",
+        "no_balls",
+        "wides",
+        "dots",
+        "fours",
+        "sixes",
+        "get_bowling_econ",
+    )
 class BattingInLine(admin.TabularInline):
     model = BattingPerformance
     extra = 11

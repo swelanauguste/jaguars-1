@@ -28,12 +28,13 @@ Matches -
     <form action=""
         method="get">
         <div class="row col-lg-5 mx-auto">
-            {{ form.team1|as_crispy_field }}
+            {{ form.teams|as_crispy_field }}
         </div>
         <div class="row col-lg-5 mx-auto">
 
             {{ form.tournament|as_crispy_field }}
         </div>
+        <a href="/">reset</a>
     </form>
 
     <br>

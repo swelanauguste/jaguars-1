@@ -169,18 +169,19 @@ class BattingPerformance(TimeStamp):
     innings = models.ForeignKey(
         Innings, related_name="batting_performances", on_delete=models.CASCADE
     )
+    batted_at = models.IntegerField(choices=CHOICES, default=1)
     player = models.ForeignKey(
         Player, related_name="batting_performances", on_delete=models.CASCADE
     )
-    batted_at = models.IntegerField(choices=CHOICES, default=0)
+    how_out = models.ForeignKey(
+        Dismissal, on_delete=models.CASCADE, null=True, blank=True
+    )
     runs = models.IntegerField(default=0)
     balls_faced = models.IntegerField(default=0)
     fours = models.IntegerField(default=0)
     sixes = models.IntegerField(default=0)
     out = models.BooleanField(default=1)
-    how_out = models.ForeignKey(
-        Dismissal, on_delete=models.CASCADE, null=True, blank=True
-    )
+   
 
     class Meta:
         ordering = ("batted_at",)
@@ -200,15 +201,15 @@ class BowlingPerformance(TimeStamp):
     innings = models.ForeignKey(
         Innings, related_name="bowling_performances", on_delete=models.CASCADE
     )
+    bowled_at = models.IntegerField(choices=CHOICES, default=1)
     player = models.ForeignKey(
         Player, related_name="bowling_performances", on_delete=models.CASCADE
     )
-    bowled_at = models.IntegerField(choices=CHOICES, default=1)
-    overs = models.DecimalField(max_digits=3, decimal_places=1)
+    overs = models.DecimalField(max_digits=3, decimal_places=1, default=4)
     runs_conceded = models.IntegerField(default=0)
     wickets = models.IntegerField(default=0)
-    wides = models.IntegerField(default=0)
     no_balls = models.IntegerField(default=0)
+    wides = models.IntegerField(default=0)
     dots = models.IntegerField(default=0)
     fours = models.IntegerField(default=0)
     sixes = models.IntegerField(default=0)
