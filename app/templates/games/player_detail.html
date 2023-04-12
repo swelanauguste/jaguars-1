@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+
+{% block head_title %}
+{{object}} -
+{% endblock head_title %}
+
+{% block content %}
+<div class="container py-5">
+   
+    <div class="border border-dark rounded-4 p-5 col-lg-6 mx-auto">
+        <h2>{{object}}</h2>
+        <hr>
+        <div class="px-lg-5 px-3 table-responsive-lg text-nowrap small">
+            <table
+                class="table table-hover table-sm table-hover table-borderless caption-top small">
+                <caption>Batting Summary</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Match</th>
+                        <th scope="col">R</th>
+                        <th scope="col">B</th>
+                        <th scope="col">4s</th>
+                        <th scope="col">6s</th>
+                        <th scope="col">SR</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for batting in object.batting_performances.all %}
+                    <tr>
+                        <th scope="row">{{forloop.counter}}</th>
+                        <td>
+                            {{batting.innings.batting_team}} VS {{batting.innings.bowling_team}}</td>
+                        <td>{{batting.runs}}</td>
+                        <td>{{batting.balls_faced}}</td>
+                        <td>{{batting.fours}}</td>
+                        <td>{{batting.sixes}}</td>
+                        <td>{{batting.get_strike_rate}}</td>
+                    </tr>
+                    {% empty %}
+                    <td class="text-center" colspan="7">No details</td>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

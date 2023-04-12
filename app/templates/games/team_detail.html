@@ -11,7 +11,7 @@
         <h2>{{object}}</h2>
         <hr>
         {% for player in object.players.all %}
-        <p class="px-5">{{forloop.counter}}). {{player}}</p>
+        <p class="px-5">{{forloop.counter}}). <a class="text-dark" href="{{player.get_absolute_url}}">{{player}}</a></p>
         {% empty %}
         <p class="text-center">No Players</p>
         {% endfor %}

@@ -1,7 +1,8 @@
 import math
 from decimal import Decimal
-from django.urls import reverse
+
 from django.db import models
+from django.urls import reverse
 
 CHOICES = [(i, i) for i in range(12)]
 
@@ -15,21 +16,20 @@ class TimeStamp(models.Model):
 
 
 class Team(TimeStamp):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
 
     class Meta:
         ordering = ("name",)
-        
+
     def get_absolute_url(self):
         return reverse("team-detail", kwargs={"pk": self.pk})
-    
 
     def __str__(self):
         return self.name
 
 
 class Venue(TimeStamp):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
 
     class Meta:
         ordering = ("name",)
@@ -39,7 +39,7 @@ class Venue(TimeStamp):
 
 
 class Dismissal(TimeStamp):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
 
     class Meta:
         ordering = ("name",)
@@ -80,7 +80,7 @@ class Match(TimeStamp):
     team2 = models.ForeignKey(
         Team, related_name="team2_matches", on_delete=models.CASCADE
     )
-    
+
     winner = models.ForeignKey(
         Team,
         related_name="winning_matches",
@@ -88,7 +88,7 @@ class Match(TimeStamp):
         blank=True,
         on_delete=models.SET_NULL,
     )
-   
+
     venue = models.ForeignKey(
         Venue,
         related_name="venues",
@@ -100,7 +100,7 @@ class Match(TimeStamp):
     class Meta:
         verbose_name_plural = "matches"
         ordering = ("match_date", "match_time")
-        
+
     def get_absolute_url(self):
         return reverse("match-detail", kwargs={"pk": self.pk})
 
@@ -109,8 +109,11 @@ class Match(TimeStamp):
 
 
 class Player(TimeStamp):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     teams = models.ManyToManyField(Team, related_name="players")
+    
+    def get_absolute_url(self):
+        return reverse("player-detail", kwargs={"pk": self.pk})
 
     class Meta:
         ordering = ("name",)
@@ -181,7 +184,6 @@ class BattingPerformance(TimeStamp):
     fours = models.IntegerField(default=0)
     sixes = models.IntegerField(default=0)
     out = models.BooleanField(default=1)
-   
 
     class Meta:
         ordering = ("batted_at",)
@@ -192,6 +194,8 @@ class BattingPerformance(TimeStamp):
             strike_rate = self.runs / self.balls_faced * 100
             return f"{strike_rate:.1f}"
         return 0
+
+    
 
     def __str__(self):
         return f"{self.player} scored {self.runs} runs in {self.innings}"

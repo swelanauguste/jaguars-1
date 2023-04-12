@@ -5,7 +5,34 @@ from django.views.generic import CreateView, DetailView, ListView, UpdateView
 
 from .filters import MatchFilter
 from .forms import MatchCreateForm
-from .models import BattingPerformance, Innings, Match, Team, Tournament, Venue
+from .models import (
+    BattingPerformance,
+    BowlingPerformance,
+    Innings,
+    Match,
+    Player,
+    Team,
+    Tournament,
+    Venue,
+)
+
+
+class PlayerListView(ListView):
+    model = Player
+
+
+class PlayerDetailView(DetailView):
+    model = Player
+
+
+class PlayerUpdateView(UpdateView):
+    model = Player
+    fields = "__all__"
+
+
+class PlayerCreateView(CreateView):
+    model = Player
+    fields = "__all__"
 
 
 class TeamListView(ListView):

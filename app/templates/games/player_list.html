@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% block head_title %}
+Players -
+{% endblock head_title %}
+
+
+{% block content %}
+<div class="container py-5">
+    <div class="display-3">Players</div>
+    <hr>
+    <div class="container">
+        {% for player in object_list %}
+        {{forloop.counter}}). <a class="text-dark"
+            href="{% url 'player-detail' player.pk %}">{{player}}</a><br>
+        {% endfor %}
+
+    </div>
+</div>
+{% endblock content %}

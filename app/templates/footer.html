@@ -1,22 +1,30 @@
 <div class="sticky-bottom bg-green">
     <div class="d-flex justify-content-center py-3">
         {% include 'go_back.html' %}
+        <a title="players"
+            class="text-dark text-decoration-none me-5"
+            href="{% url 'player-list' %}">
+            <span class="material-symbols-outlined fs-1">
+                person
+            </span>
+        </a>
+        <a title="teams"
+            class="text-dark text-decoration-none me-5"
+            href="{% url 'team-list' %}">
+            <span class="material-symbols-outlined fs-1">
+                group
+            </span>
+        </a>
         <a title="matches"
-            class="text-dark text-decoration-none mx-5"
+            class="text-dark text-decoration-none me-5"
             href="/">
             <span class="material-symbols-outlined fs-1">
                 sports_cricket
             </span>
         </a>
-        <a title="teams"
-            class="text-dark text-decoration-none"
-            href="{% url 'teams' %}">
-            <span class="material-symbols-outlined fs-1">
-                group
-            </span>
-        </a>
     </div>
-    <div class="d-flex px-5 justify-content-center border-dark border-top pt-3">
+    <div
+        class="d-flex px-5 justify-content-center border-dark border-top pt-3">
         <p class="small">&copy; {% now "Y" %} <a
                 class="text-decoration-none text-dark small"
                 target="_blank"
