@@ -44,6 +44,47 @@
                 </tbody>
             </table>
         </div>
+        <div class="px-lg-5 px-3 table-responsive-lg text-nowrap small">
+            <table
+                class="table table-hover table-sm table-hover table-borderless caption-top small">
+                <caption>Bowling Summary</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Match</th>
+                        <th scope="col">O</th>
+                        <th scope="col">R</th>
+                        <th scope="col">W</th>
+                        <th scope="col">NB</th>
+                        <th scope="col">WD</th>
+                        <th scope="col">0s</th>
+                        <th scope="col">4s</th>
+                        <th scope="col">6s</th>
+                        <th scope="col">SR</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for bowling in object.bowling_performances.all %}
+                    <tr>
+                        <th scope="row">{{forloop.counter}}</th>
+                        <td>
+                            {{bowling.innings.batting_team}} VS {{bowling.innings.bowling_team}}</td>
+                        <td>{{bowling.overs}}</td>
+                        <td>{{bowling.runs_conceded}}</td>
+                        <td>{{bowling.wickets}}</td>
+                        <td>{{bowling.no_balls}}</td>
+                        <td>{{bowling.dots}}</td>
+                        <td>{{bowling.wides}}</td>
+                        <td>{{bowling.fours}}</td>
+                        <td>{{bowling.sixes}}</td>
+                        <td>{{bowling.get_bowling_econ}}</td>
+                    </tr>
+                    {% empty %}
+                    <td class="text-center" colspan="7">No details</td>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
