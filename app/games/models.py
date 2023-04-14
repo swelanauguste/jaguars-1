@@ -132,6 +132,8 @@ class Innings(TimeStamp):
     )
     byes = models.IntegerField(default=0)
     leg_byes = models.IntegerField(default=0)
+    penalties = models.IntegerField(default=0)
+    others = models.IntegerField(default=0)
 
     class Meta:
         verbose_name_plural = "innings"
@@ -150,7 +152,7 @@ class Innings(TimeStamp):
 
     @property
     def get_total_extras(self):
-        return self.get_no_balls + self.get_wides + self.byes + self.leg_byes
+        return self.get_no_balls + self.get_wides + self.byes + self.leg_byes + self.penalties + self.others
 
     @property
     def get_batters_total_score(self):
