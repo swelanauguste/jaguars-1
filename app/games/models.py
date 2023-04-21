@@ -52,7 +52,7 @@ class MatchTime(models.Model):
     time = models.TimeField()
 
     def __str__(self):
-        return f"{self.time}"
+        return self.time
 
 
 class Tournament(models.Model):
