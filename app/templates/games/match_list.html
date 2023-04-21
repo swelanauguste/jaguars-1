@@ -36,7 +36,6 @@ Matches -
                 href="/">reset</a>
         </div>
     </form>
-
     <br>
     {% for match in object_list %}
     <a class="text-dark text-decoration-none"
@@ -48,8 +47,9 @@ Matches -
             <div class="text-center p-1 bg-white rounded-bottom-4">
                 <span class="small">{{match.match_date|date:"l dS F Y"}}
                     {{match.match_time.time|time:"g:i a"}}
-                    {{match.venue}}</span>
+                </span>
                 <br>
+                <span>{{match.venue}}</span>
             </div>
         </div>
     </a>
@@ -57,7 +57,4 @@ Matches -
     <p class="text-center">No Matches</p>
     {% endfor %}
 </div>
-
-
-
 {% endblock content %}
